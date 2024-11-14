@@ -1,0 +1,112 @@
+Q1. Create a constructor function Calculator that creates objects with 3 methods:
+read() prompts for two values and saves them as object properties with names a and b
+respectively.
+sum() returns the sum of these properties.
+mul() returns the multiplication product of these properties.
+function Calculator() {
+    this.read = function() {
+        this.a = parseInt(process.argv[2]);
+        this.b = parseInt(process.argv[3]);
+    }
+    this.sum = function() {
+        console.log(`Sum: ${this.a+this.b}`);
+    }
+    this.mul = function() {
+        console.log(`Mul: ${this.a*this.b}`);
+    }
+}
+const cal = new Calculator();
+cal.read();
+cal.sum();
+cal.mul();
+Solution:
+PS D:\SYMCA\DAD\Codes> node A4Q1.js 12 13
+Sum: 25
+Mul: 156
+PS D:\SYMCA\DAD\Codes>
+Q2. Create a function multiplyNumeric(obj) that multiplies all numeric property values of
+obj by 2.
+let object = {
+    name: "sakshi",
+    age: 20,
+    salary: 500,
+    isAdmin: true
+}
+function multiplyNumeric(o) {
+    for(let k in o) {
+        if(Number.isInteger(o[k]))
+        {
+            o[k] = o[k]*2;
+        }
+    }    
+}
+multiplyNumeric(object);
+console.log(object);
+Solution:
+PS D:\SYMCA\DAD\Codes> node A4Q2.js
+{ name: Drimesh, age: 40, salary: 1000, isAdmin: true }
+PS D:\SYMCA\DAD\Codes>
+Q3. Sum of Salary.
+function Employee(name,sal) {
+    this.name = name;
+    this.sal = sal;
+}
+let es = [];
+let e1 = new Employee("Sakshi",20000);
+es.push(e1);
+let e2 = new Employee("Pratik",21000);
+es.push(e2);
+let e3 = new Employee("Darshan",30000);
+es.push(e3);
+let i = 0;
+es.forEach((ob)=>
+{
+    i += ob.sal;
+})
+console.log(i);
+PS D:\SYMCA\DAD\Codes> node A4Q3.js
+71000
+PS D:\SYMCA\DAD\Codes>
+Q4. Display sum, difference, multiplication and division of two numbers using arrow
+function.
+const arrow = (a,b) => {
+    console.log(`Sum: ${a+b}`);
+    console.log(`Difference: ${a-b}`);
+    console.log(`Multiplication: ${a*b}`);
+    console.log(`Division: ${a/b}`);
+}
+arrow(12,4);
+Solution:
+Sum: 16
+Difference: 8
+Multiplication: 48
+Division: 3
+Create an array of student objects. Attributes of student are rollNo, name, class and total
+marks. Display 1) All students 2) Details of topper student
+Solution:
+function Student(rollno,name,cls,totalMarks) {
+    this.rollno = rollno;
+    this.name = name;
+    this.class = cls;
+    this.totalMarks = totalMarks;
+    this.info = function () {
+        console.log(`Roll No: ${this.rollno}`);
+        console.log(`Name: ${this.name}`);
+        console.log(`Class: ${this.class}`);
+        console.log(`Total Marks: ${this.totalMarks}`);
+    }
+}
+let students = [];
+students.push(new Student(26,"Sakshi","MCA",89));
+students.push(new Student(16,"Omika","MCA",69));
+students.push(new Student(37,"Darshani","MCA",71));
+students.push(new Student(48,"Darshan","MCA",99));
+const topper = students.reduce((prev,curr)=>{
+    return prev.totalMarks > curr.totalMarks ? prev : curr;
+})
+topper.info();
+Solution:
+Roll No: 48
+Name: Drimesh
+Class: MCA
+Total Marks: 99
